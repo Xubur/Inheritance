@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <iostream>
 #include "Document.h"
 
 class Email : public Document
@@ -12,6 +13,7 @@ public:
 		setRecipient(inRecipient);
 		setTitle(inTitle);
 	};
+	~Email() { setText(""); setSender(""); setRecipient(""); setTitle(""); }; // NO TRACES. NOT EVEN HERE.
 
 
 	void setSender(std::string inText) { sender = inText; }
@@ -31,7 +33,15 @@ public:
 		setSender(src.getSender());
 		setRecipient(src.getRecipient());
 		setTitle(src.getTitle());
-	}
+	};
+
+	void print_obj()
+	{
+		std::cout << "From: " << getSender() << std::endl;
+		std::cout << "To: " << getRecipient() << std::endl;
+		std::cout << "Title: " << getTitle() << std::endl;
+		std::cout << getText() << std::endl;
+	};
 
 private:
 	std::string sender, recipient, title;
